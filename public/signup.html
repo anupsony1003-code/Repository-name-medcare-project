@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MedCare | Sign Up</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg,#43cea2,#185a9d);
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .box {
+            background: white;
+            padding: 30px;
+            width: 350px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+        button {
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        a {
+            text-decoration: none;
+            color: #185a9d;
+            font-size: 14px;
+            display: block;
+            margin-top: 10px;
+        }
+        .home-link {
+            color: #777;
+            margin-top: 20px;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <h2>Sign Up</h2>
+    <input type="text" id="regName" placeholder="Full Name">
+    <input type="text" id="regUser" placeholder="Username">
+    <input type="password" id="regPass" placeholder="Password">
+    <button onclick="signup()">Register</button>
+    
+    <a href="login.html">Back to Login</a>
+    <a href="index.html" class="home-link">← Back to Home</a>
+</div>
+
+<script>
+function signup() {
+    let name = document.getElementById("regName").value;
+    let user = document.getElementById("regUser").value;
+    let pass = document.getElementById("regPass").value;
+
+    if (name.trim() === "" || user.trim() === "" || pass.trim() === "") {
+        alert("Please fill in all fields.");
+    } else {
+        alert("Registered successfully!");
+        window.location.href = "login.html";
+    }
+}
+</script>
+
+</body>
+</html>

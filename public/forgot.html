@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MedCare | Forgot Password</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg,#ff9966,#ff5e62);
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .box {
+            background: white;
+            padding: 30px;
+            width: 350px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+        button {
+            background: #ff5e62;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        a {
+            text-decoration: none;
+            color: #ff5e62;
+            font-size: 14px;
+            display: block;
+            margin-top: 10px;
+        }
+        .home-link {
+            color: #777;
+            margin-top: 20px;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <h2>Restore Password</h2>
+    <input type="text" id="restUser" placeholder="Username">
+    <input type="email" id="restEmail" placeholder="Email">
+    <button onclick="restore()">Send Reset Link</button>
+    
+    <a href="login.html">Back to Login</a>
+    <a href="index.html" class="home-link">← Back to Home</a>
+</div>
+
+<script>
+function restore() {
+    let user = document.getElementById("restUser").value;
+    let email = document.getElementById("restEmail").value;
+
+    if (user.trim() === "" || email.trim() === "") {
+        alert("Please enter both Username and Email.");
+    } else {
+        alert("Password reset link sent to: " + email);
+        window.location.href = "login.html";
+    }
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MedCare | Pharmacy Calculator</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f4f7f6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        .instruction {
+            color: #555;
+            margin-bottom: 20px;
+            text-align: center;
+            max-width: 600px;
+        }
+        .calculator {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            width: 320px;
+        }
+        #display {
+            width: 100%;
+            height: 50px;
+            font-size: 24px;
+            text-align: right;
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #e0e6ed;
+            border-radius: 5px;
+            background: #fcfdfe;
+            box-sizing: border-box;
+        }
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+        button {
+            padding: 15px;
+            font-size: 18px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            background: #fff;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        button:hover { background: #f0f0f0; }
+        .operator { color: #2c7be5; font-weight: bold; }
+        .equals { background: #2c7be5; color: white; grid-row: span 2; }
+        .equals:hover { background: #1a5bb8; }
+        .clear { color: #e53e3e; }
+        .home-link { margin-top: 20px; text-decoration: none; color: #888; font-size: 14px; }
+    </style>
+</head>
+<body>
+
+    <p class="instruction">Use this calculator to quickly compute totals, discounts, or quantities for pharmacy utensils and billing.</p>
+
+    <div class="calculator">
+        <input type="text" id="display" disabled>
+        <div class="buttons">
+            <button class="clear" onclick="clearDisplay()">C</button>
+            <button onclick="backspace()">⌫</button>
+            <button class="operator" onclick="addToDisplay('/')">÷</button>
+            <button class="operator" onclick="addToDisplay('*')">×</button>
+            
+            <button onclick="addToDisplay('7')">7</button>
+            <button onclick="addToDisplay('8')">8</button>
+            <button onclick="addToDisplay('9')">9</button>
+            <button class="operator" onclick="addToDisplay('-')">-</button>
+            
+            <button onclick="addToDisplay('4')">4</button>
+            <button onclick="addToDisplay('5')">5</button>
+            <button onclick="addToDisplay('6')">6</button>
+            <button class="operator" onclick="addToDisplay('+')">+</button>
+            
+            <button onclick="addToDisplay('1')">1</button>
+            <button onclick="addToDisplay('2')">2</button>
+            <button onclick="addToDisplay('3')">3</button>
+            <button class="equals" onclick="calculate()">=</button>
+            
+            <button style="grid-column: span 2;" onclick="addToDisplay('0')">0</button>
+            <button onclick="addToDisplay('.')">.</button>
+        </div>
+    </div>
+
+    <a href="index.html" class="home-link">← Back to Home</a>
+
+    <script>
+        let display = document.getElementById('display');
+
+        function addToDisplay(value) {
+            display.value += value;
+        }
+
+        function clearDisplay() {
+            display.value = '';
+        }
+
+        function backspace() {
+            display.value = display.value.slice(0, -1);
+        }
+
+        function calculate() {
+            try {
+                // eval() is fine for a simple local calculator
+                display.value = eval(display.value);
+            } catch (error) {
+                alert("Invalid calculation");
+                clearDisplay();
+            }
+        }
+    </script>
+</body>
+</html>
