@@ -45,7 +45,7 @@
     <input type="password" id="password" placeholder="Password">
     <button onclick="login()">Login</button>
 
-    <a href="register.html">Create Account</a>
+    <a href="Register.html">Create Account</a>
     <a href="forgot.html">Forgot Password?</a>
 </div>
 
@@ -71,7 +71,7 @@ async function login() {
         if (response.ok) {
             alert("✅ Login Successful!");
             localStorage.setItem("userToken", result.token);
-            window.location.href = "index.html";
+            window.location.href = "Register.html"; // Redirect to a dashboard or homepage
         } else {
             alert("❌ Error: " + result.message);
         }

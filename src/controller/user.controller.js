@@ -50,6 +50,55 @@ exports.login = async (req, res) => {
 };
 
 exports.getUsers = async (req, res) => {
-    const users = await userService.getAllUsers();
-    res.json(users);
+    try {
+        const users = await userService.getAllUsers();
+        res.json(users);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+};
+
+exports.getUserProfile = async (req, res) => {
+    try {
+        const user = await userService.findUserById(req.user.id);
+        if (!user) return res.status(404).json({ message: "User not found" });
+        
+        const { password, ...userWithoutPassword } = user.toObject();
+        res.json(userWithoutPassword);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+};
+
+exports.updateUserProfile = async (req, res) => {
+    try {
+        const { name, email, phonenumber, address, city, country } = req.body;
+        
+        const updatedUser = await userService.updateUserById(req.user.id, {
+            name,
+            email,
+            phonenumber,
+            address,
+            city,
+            country
+        });
+        
+        if (!updatedUser) return res.status(404).json({ message: "User not found" });
+        
+        const { password, ...userWithoutPassword } = updatedUser.toObject();
+        res.json({ message: "Profile updated", user: userWithoutPassword });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+};
+
+exports.deleteUser = async (req, res) => {
+    try {
+        const deletedUser = await userService.deleteUserById(req.params.id);
+        if (!deletedUser) return res.status(404).json({ message: "User not found" });
+        
+        res.json({ message: "User deleted successfully" });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
 };
